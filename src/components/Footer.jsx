@@ -19,7 +19,7 @@ function Footer() {
         <div className='mx-3 mt-3'>
         <ul>
           <li className='text-sm underline text-white pb-3'><Link to="/tictactoe" >
-            Rate The Game
+            Contact Us
             </Link>
             </li>
           <p className='text-sm font-semibold italic'>
@@ -30,8 +30,8 @@ function Footer() {
 
         <div className='mx-3 mt-3'>
         <ul>
-          <li className='text-sm underline text-white pb-3'><Link to="/tictactoe" >
-            Rate The Game
+          <li className='text-sm underline text-white pb-3'><Link to="/github" >
+            Follow me on Github
             </Link>
             </li>
           <p className='text-sm font-semibold italic'>
