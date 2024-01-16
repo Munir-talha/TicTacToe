@@ -21,7 +21,9 @@ function Github() {
         <Card.Text className='font-semibold italic text-center text-lg'>
           A Software engineer
         </Card.Text>
-        <Button className='border rounded p-1 bg-slate-400' variant="secondary">Secondary</Button>{' '}
+        <Card.Text className='font-semibold italic text-center text-sm'>
+          {data?.followers} Followers and have {data?.public_repos} Repositories
+        </Card.Text>
       </Card.Body>
     </Card>
   )

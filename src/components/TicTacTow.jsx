@@ -1,11 +1,16 @@
 import React, { useState,  useEffect } from 'react'
 import {ticTacToeWin} from '../helper/helper'
 
+import {addWin} from '../Features/TicTacToe'
+import { useDispatch , useSelector } from 'react-redux';
+
 export default function TicTacTow() {
 
   const [turn, setTurn] = useState(true);
   const [board, setBoard] = useState(Array(9).fill(null));
   const [win , setWin] = useState(false)
+  const dispatch = useDispatch()
+  const winnersCount = useSelector(state => state.ticTacToe)
   
   const play = (index) => {
     if (board[index] === null) {
@@ -26,7 +31,11 @@ useEffect(() => {
   if(winStatus)
   {
     setWin()
+    const id = turn ? 1 : 2  
+    dispatch(addWin(id)) 
+    console.log(winnersCount)
   }
+
   noResult()
 }, [turn , board])
 
@@ -60,6 +69,8 @@ useEffect(() => {
     </div>
     <div className='text-3xl flex justify-center'>{turn ? "Player 1 turns" : "Player 2 turns"}</div>
     <div id ="result" className='text-3xl flex justify-center'>{win ? (turn ? "Player 1 Won" : "Player 2 Won") : "No Result Yet"}</div>
+    <div className='text-3xl flex justify-center text-green-400'>Player 1 : {winnersCount[0]?.winCount || 0}</div>
+    <div className='text-3xl flex justify-center text-blue-300'>Player 2 : {winnersCount[1]?.winCount || 0}</div>
     </>
   )
 }
