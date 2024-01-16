@@ -4,6 +4,7 @@ import './index.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import Layout from './components/layout.jsx'
 import TicTacTow from './components/TicTacTow.jsx'
+import Todo from './components/todo.jsx'
 import Github from './components/Github.jsx'
 import { Provider } from 'react-redux'
 import {store} from './Store/store'
@@ -14,6 +15,10 @@ const router = createBrowserRouter(
       <Route 
       path='github' 
       element={<Github />}
+       /> 
+       <Route 
+      path='todo' 
+      element={<Todo />}
        /> 
     </Route>
   )

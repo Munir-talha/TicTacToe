@@ -18,7 +18,6 @@ const ticTacToeSlice = createSlice({
     initialState,
     reducers : {
         addWin : (state , action) => {
-            console.log("action: " , action)
             const winner = state.ticTacToe.find((winner)=> winner.id === action.payload)
             if(winner)
             {

@@ -1,6 +1,5 @@
 import React, { useState,  useEffect } from 'react'
 import {ticTacToeWin} from '../helper/helper'
-
 import {addWin} from '../Features/TicTacToe'
 import { useDispatch , useSelector } from 'react-redux';
 
@@ -21,19 +20,24 @@ export default function TicTacTow() {
     }
   };
 
+  const funPopup = (id) => {
+    alert(`Player ${id} won`)
+  }
+
   const reset = () => {
     setBoard(Array(9).fill(null))
     setWin(false)
   }
-  
+
 useEffect(() => {
   const winStatus = ticTacToeWin(board)
   if(winStatus)
   {
     setWin()
-    const id = turn ? 1 : 2  
-    dispatch(addWin(id)) 
-    console.log(winnersCount)
+    const id = turn ? 1 : 2 
+    console.log(winnersCount , ": winner") 
+    dispatch(addWin(id))
+    funPopup(id)
   }
 
   noResult()
@@ -69,8 +73,8 @@ useEffect(() => {
     </div>
     <div className='text-3xl flex justify-center'>{turn ? "Player 1 turns" : "Player 2 turns"}</div>
     <div id ="result" className='text-3xl flex justify-center'>{win ? (turn ? "Player 1 Won" : "Player 2 Won") : "No Result Yet"}</div>
-    <div className='text-3xl flex justify-center text-green-400'>Player 1 : {winnersCount[0]?.winCount || 0}</div>
-    <div className='text-3xl flex justify-center text-blue-300'>Player 2 : {winnersCount[1]?.winCount || 0}</div>
+    <div className='text-3xl flex justify-center text-green-400'>Player 1 : {winnersCount?.ticTacToe[0].winCount }</div>
+    <div className='text-3xl flex justify-center text-blue-300'>Player 2 : {winnersCount?.ticTacToe[1].winCount }</div>
     </>
   )
 }
