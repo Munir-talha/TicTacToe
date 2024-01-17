@@ -20,18 +20,21 @@ useEffect  (() => {
 , [allTodos])
 
 const adding = () => {
+
   if(todo === '') {
       return
   }
-    const newTodo = {
-        title : todo,
-        completed : false
-    }
-    dispatch(addTodo(newTodo))
-    setTodo('')
+  const newTodo = {
+      title : todo,
+      completed : false
+  }
+  dispatch(addTodo(newTodo))
+  setTodo('')
 }
-const del = (id) => {
-    dispatch(deleteTodo(id))
+const edit = (todo) => {
+  setTodo(todo.title)
+  dispatch(deleteTodo(todo.id))
+
 }
 const markChecked = (id) => {
   dispatch(deleteTodo(id))
@@ -68,6 +71,9 @@ const markChecked = (id) => {
         </Badge>
         <Badge onClick={()=> dispatch(deleteTodo(todo.id))} bg="secondary" style={{cursor : 'grab'}} pill>
         ❌
+        </Badge>
+        <Badge  bg="secondary" onClick={()=> edit(todo)} style={{cursor : 'grab' , color: 'black'}} pill>
+        Edit
         </Badge></span>
         </ListGroup.Item>
       })} 
