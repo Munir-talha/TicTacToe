@@ -33,6 +33,10 @@ const adding = () => {
 const del = (id) => {
     dispatch(deleteTodo(id))
 }
+const markChecked = (id) => {
+  dispatch(deleteTodo(id))
+  alert('Marked as completed')
+}
 
   return (
     <>
@@ -45,10 +49,10 @@ const del = (id) => {
         type='text'
         isValid = {todo.length > 0} 
         isInvalid = {todo.length === 0}
-          aria-label="Enter Todo"
-          aria-describedby="inputGroup-sizing-sm"
-          value={todo}
-            onChange={(e) => setTodo (e.target.value)}
+        aria-label="Enter Todo"
+        aria-describedby="inputGroup-sizing-sm"
+        value={todo}
+        onChange={(e) => setTodo (e.target.value)}
         />
         
         <InputGroup.Text id="inputGroup-sizing-sm" style={{backgroundColor : '#6CCD4F' , cursor:'grab'}} onClick={adding}>Add</InputGroup.Text>
@@ -57,18 +61,17 @@ const del = (id) => {
 
     <div className='flex justify-center'>
     <ListGroup as="ol" numbered>
-            
-                {allTodos.todoList.map((todo , index) => {
-                    return <ListGroup.Item id={todo.id} as="li">{todo.title}
-                    <span className='flex justify-end'><Badge onClick={()=> del(todo.id)} bg="primary" pill>
-                    ✔
-                  </Badge>
-                  <Badge onClick={()=> dispatch(deleteTodo(todo.id))} bg="secondary" style={{cursor : 'grab'}} pill>
-                  ❌
-                  </Badge></span>
-                  </ListGroup.Item>
-                })} 
-            </ListGroup>
+      {allTodos.todoList.map((todo , index) => {
+          return <ListGroup.Item id={todo.id} key={index} as="li">{todo.title}
+          <span className='flex justify-end'><Badge onClick={() => markChecked(todo.id)} bg="primary" pill>
+          ✔
+        </Badge>
+        <Badge onClick={()=> dispatch(deleteTodo(todo.id))} bg="secondary" style={{cursor : 'grab'}} pill>
+        ❌
+        </Badge></span>
+        </ListGroup.Item>
+      })} 
+    </ListGroup>
     </div>
     </>
   )
