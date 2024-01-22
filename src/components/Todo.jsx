@@ -12,10 +12,9 @@ function Todo() {
 
 const allTodos = useSelector(state => state.Todos)
 const dispatch = useDispatch()
-
+const [valid , setValid] = useState(false)
 const [todo , setTodo] = useState('')
 useEffect  (() => { 
-    console.log(allTodos , 'All todos')
 }
 , [allTodos])
 
@@ -50,12 +49,15 @@ const markChecked = (id) => {
         required
         placeholder='Enter Todo'
         type='text'
-        isValid = {todo.length > 0} 
-        isInvalid = {todo.length === 0}
+        isValid = {todo.length > 0 } 
+        isInvalid = {todo.length === 0 && valid}
         aria-label="Enter Todo"
         aria-describedby="inputGroup-sizing-sm"
         value={todo}
-        onChange={(e) => setTodo (e.target.value)}
+        onChange={(e) => {
+          setTodo (e.target.value)
+          setValid(true)  
+        }}
         />
         
         <InputGroup.Text id="inputGroup-sizing-sm" style={{backgroundColor : '#6CCD4F' , cursor:'grab'}} onClick={adding}>Add</InputGroup.Text>
