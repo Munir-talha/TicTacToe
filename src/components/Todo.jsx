@@ -29,6 +29,7 @@ const adding = () => {
   }
   dispatch(addTodo(newTodo))
   setTodo('')
+  setValid(false)
 }
 const edit = (todo) => {
   setTodo(todo.title)
@@ -54,6 +55,12 @@ const markChecked = (id) => {
         aria-label="Enter Todo"
         aria-describedby="inputGroup-sizing-sm"
         value={todo}
+        onKeyDown={(e) => {
+          if(e.key === 'Enter') {
+            adding()
+          }
+        }
+        }
         onChange={(e) => {
           setTodo (e.target.value)
           setValid(true)  
@@ -66,7 +73,8 @@ const markChecked = (id) => {
 
     <div className='flex justify-center'>
     <ListGroup as="ol" numbered>
-      {allTodos.todoList.map((todo , index) => {
+      {
+      allTodos.todoList.map((todo , index) => {
           return <ListGroup.Item id={todo.id} key={index} as="li">{todo.title}
           <span className='flex justify-end'><Badge onClick={() => markChecked(todo.id)} bg="primary" pill>
           ✔
